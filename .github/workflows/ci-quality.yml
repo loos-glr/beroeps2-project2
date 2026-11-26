@@ -1,0 +1,32 @@
+name: Code Quality Check (CI)
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  lint-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code ophalen
+        uses: actions/checkout@v4
+
+      - name: Controleer of .env niet per ongeluk in Git staat
+        run: |
+          found=$(find . -path ./.git -prune -o -type f -name ".env*" ! -name ".env.example" -print)
+          if [ -n "$found" ]; then
+            echo "FOUT: .env bestand(en) gevonden in repository! Verwijder dit direct i.v.m. inloggegevens:"
+            echo "$found"
+            exit 1
+          fi
+          echo "OK: geen .env bestanden in de repository."
+
+      - name: PHP 8.2 instellen
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: PHP Syntax Check op alle bestanden
+        run: find . -name "*.php" -not -path "./vendor/*" -exec php -l {} +

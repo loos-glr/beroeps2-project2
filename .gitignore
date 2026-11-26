@@ -1,0 +1,22 @@
+# Geheimen: nooit in Git (.env.example is wel bedoeld om te delen)
+.env
+.env.*
+!.env.example
+
+# Uploads van gebruikers
+/uploads/
+/public/uploads/
+
+# Dependencies en logs
+/vendor/
+*.log
+
+# Systeem- en editorbestanden
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Documenten voor docenten (bijv. het renovatieplan) horen niet in de template.
+# Alleen PDF's direct in de root worden genegeerd; docs/ blijft vrij.
+/*.pdf

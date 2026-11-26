@@ -1,0 +1,14 @@
+# Vervang bij de projectstart in Week 1 door de GitHub-accounts van alle teamleden.
+# Elke Pull Request wijst hierdoor automatisch het team aan voor code review.
+#
+# Werkt alleen in combinatie met een Branch Protection Rule op `main`:
+#   Settings → Branches → Add rule → Branch name pattern: main
+#   [x] Require a pull request before merging
+#       [x] Require approvals (minimaal 1)
+#       [x] Require review from Code Owners
+#   [x] Require status checks to pass before merging → "lint-and-verify"
+*                    @student-1 @student-2 @student-3
+
+# Specifieke hoedersrollen (iedereen blijft over de hele repo meebouwen en reviewen):
+/database/           @student-backend @student-1
+/public/assets/css/  @student-ux @student-2
